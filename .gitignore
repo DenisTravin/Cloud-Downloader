@@ -1,0 +1,19 @@
+**/packages/*
+**/bin/*
+**/obj/*
+**/docs/*
+.suo
+*.user
+.vs/
+*.Cache
+/_ReSharper.Caches
+**/TestResults/*
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015 cache/options directory
+.vs/

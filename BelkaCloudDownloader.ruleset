@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rules for BelkaCloudDownloader" Description="Code analysis rules for BelkaCloudDownloader project." ToolsVersion="14.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1006" Action="None" />
+    <Rule Id="CA1014" Action="None" />
+    <Rule Id="CA1026" Action="None" />
+    <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA2210" Action="None" />
+
+    <!-- Correct the spelling of ... in member name ... or remove it entirely if it represents any sort of Hungarian notation.
+         Turned off because there are too many false positives. -->
+    <Rule Id="CA1704" Action="None" />
+
+    <!-- Correct the spelling of the unrecognized token ... in the literal ... . 
+         Turned off because there are too many false positives. -->
+    <Rule Id="CA2204" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <Rule Id="CS8019" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0001" Action="None" />
+    <Rule Id="IDE0002" Action="None" />
+    <Rule Id="IDE0003" Action="None" />
+    <Rule Id="IDE0004" Action="None" />
+    <Rule Id="IDE0005" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <!-- Arithmetic expressions must declare precedence.
+         Turned off because precedence is mostly obvious and too much parentheses clutter the code. Resharper also recommends to remove them. -->
+    <Rule Id="SA1407" Action="Hidden" />
+
+    <!-- Elements must be documented.
+         Turned off because we are not enterprisey enough yet. -->
+    <Rule Id="SA1600" Action="Hidden" />
+
+    <!-- The file header is missing or not located at the top of the file. 
+         Turned off because there seems to be no standard copyright header in BEC code. -->
+    <Rule Id="SA1633" Action="Hidden" />
+
+    <!-- Missing XML comment for publicly visible type or member.
+         Turned off because we are not enterprisey enough yet. -->
+    <Rule Id="CS1591" Action="Hidden" />
+  </Rules>
+</RuleSet>
