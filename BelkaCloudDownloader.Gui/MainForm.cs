@@ -19,7 +19,7 @@ namespace BelkaCloudDownloader.Gui
         /// <summary>
         /// A list of available cloud plugins.
         /// </summary>
-        private readonly IList<CloudPlugin> plugins = new List<CloudPlugin> { new GoogleCloudPlugin() };
+        private readonly IList<CloudPlugin> plugins = new List<CloudPlugin> { new GoogleCloudPlugin(), new BoxPlugin() };
 
         /// <summary>
         /// Holds and serializes on disk currently selected downloading settings.

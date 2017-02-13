@@ -89,6 +89,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BoxPlugin\BoxPlugin.cs" />
+    <Compile Include="BoxPlugin\BoxProtocol.cs" />
     <Compile Include="CloudPluginInterface\CloudPlugin.cs" />
     <Compile Include="DirectorySelector.cs">
       <SubType>UserControl</SubType>
@@ -159,6 +161,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BelkaCloudDownloader.Box\BelkaCloudDownloader.BoxDrive.csproj">
+      <Project>{11c5fafc-e48c-4ce0-b5f7-8e3b68b01335}</Project>
+      <Name>BelkaCloudDownloader.BoxDrive</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BelkaCloudDownloader.Google\BelkaCloudDownloader.Google.csproj">
       <Project>{16196149-0bb9-4afe-91ff-846a08b553bc}</Project>
       <Name>BelkaCloudDownloader.Google</Name>
@@ -171,6 +177,14 @@
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="bouncy_castle_hmac_sha_pcl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle-PCL.1.0.0.6\lib\bouncy_castle_hmac_sha_pcl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Box.V2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ddda8fe64dde1ac3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Box.V2.2.14.0\lib\portable-net40+sl50+win+wp80\Box.V2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Google.Apis, Version=1.10.0.25332, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
@@ -219,6 +233,18 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx, Version=2.1.3.0, Culture=neutral, PublicKeyToken=09d695329ca273b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.2.1.3\lib\net40\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=2.1.3.0, Culture=neutral, PublicKeyToken=09d695329ca273b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.2.1.3\lib\net40\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=2.1.3.0, Culture=neutral, PublicKeyToken=09d695329ca273b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.2.1.3\lib\net40\Nito.AsyncEx.Enlightenment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StringInterpolationBridge, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
