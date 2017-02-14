@@ -14,9 +14,6 @@
 
     public class BoxDownloader : AbstractDownloader
     {
-        private AutoResetEvent autoResetEvent = new AutoResetEvent(false);
-        private AutoResetEvent dow = new AutoResetEvent(false);
-
         private CancellationToken cancelToken;
 
         private List<BoxItemWithPath> result = new List<BoxItemWithPath>();
@@ -79,19 +76,19 @@
             foreach (var item in result)
             {
                 cancelToken.ThrowIfCancellationRequested();
-                temp.Add(item.boxItem);
+                temp.Add(item.BoxItem);
                 if (selectedCapabilities.Contains("Files with meta-information"))
                 {
                     string path = newPath;
-                    if (item.extraPath != "")
+                    if (item.ExtraPath != "")
                     {
-                        path += item.extraPath;
+                        path += item.ExtraPath;
                         Directory.CreateDirectory(path);
                     }
-                    path += '\\' + item.boxItem.Name;
+                    path += '\\' + item.BoxItem.Name;
                     using (var fileStream = System.IO.File.Create(path))
                     {
-                        (await boxClient.FilesManager.DownloadStreamAsync(item.boxItem.Id)).CopyTo(fileStream);
+                        (await boxClient.FilesManager.DownloadStreamAsync(item.BoxItem.Id)).CopyTo(fileStream);
                     }
                 }
             }
