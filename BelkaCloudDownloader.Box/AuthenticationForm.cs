@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Windows.Forms;
+    using System.Threading;
 
     public partial class AuthenticationForm : Form
     {
@@ -53,28 +54,42 @@
             }
         }
 
-        private static string POST(string Url, string Data)
+        private static string POST(string url, string data)
         {
-            System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
+            byte[] sentData = System.Text.Encoding.GetEncoding(1251).GetBytes(data);
+            System.Net.WebRequest req = System.Net.WebRequest.Create(url);
             req.Method = "POST";
             req.Timeout = 100000;
             req.ContentType = "application/x-www-form-urlencoded";
-            byte[] sentData = System.Text.Encoding.GetEncoding(1251).GetBytes(Data);
             req.ContentLength = sentData.Length;
-            Stream sendStream = req.GetRequestStream();
-            sendStream.Write(sentData, 0, sentData.Length);
-            sendStream.Close();
-            System.Net.WebResponse res = req.GetResponse();
-            Stream ReceiveStream = res.GetResponseStream();
-            StreamReader sr = new StreamReader(ReceiveStream, System.Text.Encoding.UTF8);
-            Char[] read = new Char[256];
-            int count = sr.Read(read, 0, 256);
             string outStr = String.Empty;
-            while (count > 0)
+            try
             {
-                String str = new String(read, 0, count);
-                outStr += str;
-                count = sr.Read(read, 0, 256);
+                Stream sendStream = req.GetRequestStream();
+                sendStream.Write(sentData, 0, sentData.Length);
+                sendStream.Close();
+                System.Net.WebResponse res = req.GetResponse();
+                Stream ReceiveStream = res.GetResponseStream();
+                StreamReader sr = new StreamReader(ReceiveStream, System.Text.Encoding.UTF8);
+                Char[] read = new Char[256];
+                int count = sr.Read(read, 0, 256);
+                while (count > 0)
+                {
+                    String str = new String(read, 0, count);
+                    outStr += str;
+                    count = sr.Read(read, 0, 256);
+                }
+            }
+            catch (System.Net.WebException exception)
+            {
+                Console.WriteLine("This program is expected to throw WebException on successful run." +
+                        "\n\nException Message :" + exception.Message);
+                if (exception.Status == System.Net.WebExceptionStatus.ProtocolError)
+                {
+                    Console.WriteLine("Status Code : {0}", ((System.Net.HttpWebResponse)exception.Response).StatusCode);
+                    Console.WriteLine("Status Description : {0}", ((System.Net.HttpWebResponse)exception.Response).StatusDescription);
+                    throw;
+                }
             }
             return outStr;
         }
